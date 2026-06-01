@@ -29,7 +29,7 @@ gradeForm.addEventListener('submit', function(event) {
 
     // Get input values
     const studentName = document.getElementById('studentName').value.trim();
-    const studentMark = parseFloat(document.getElementById('studentMark').value);
+    const studentMark = parseInt(document.getElementById('studentMark').value);
 
     // Validate inputs
     if (!studentName || isNaN(studentMark)) {
