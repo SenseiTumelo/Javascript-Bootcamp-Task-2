@@ -11,15 +11,15 @@ let submittedStudents = [];
 // Function to determine grade category
 function getGradeCategory(mark) {
     if (mark >= 80 && mark <= 100) {
-        return { status: 'PASSED WITH DISTINCTION', passed: true, emoji: '✓' };
+        return { status: 'PASSED WITH DISTINCTION', passed: true };
     } else if (mark >= 65 && mark <= 79) {
-        return { status: 'PASSED WITH MERIT', passed: true, emoji: '✓' };
+        return { status: 'PASSED WITH MERIT', passed: true };
     } else if (mark >= 50 && mark <= 64) {
-        return { status: 'PASSED', passed: true, emoji: '✓' };
+        return { status: 'PASSED', passed: true };
     } else if (mark >= 0 && mark < 50) {
-        return { status: 'FAILED', passed: false, emoji: '✗' };
+        return { status: 'FAILED', passed: false };
     } else {
-        return { status: 'INVALID MARK', passed: false, emoji: '✗' };
+        return { status: 'INVALID MARK', passed: false };
     }
 }
 
@@ -50,8 +50,7 @@ gradeForm.addEventListener('submit', function(event) {
         name: studentName,
         mark: studentMark,
         status: gradeInfo.status,
-        passed: gradeInfo.passed,
-        emoji: gradeInfo.emoji
+        passed: gradeInfo.passed
     });
 
     // Display result
@@ -74,7 +73,7 @@ function displayResult(name, mark, gradeInfo) {
     resultDiv.classList.add(gradeInfo.passed ? 'pass' : 'fail');
 
     // Build result message
-    const status = `${gradeInfo.emoji} ${gradeInfo.status}`;
+    const status = gradeInfo.status;
     const message = `
         <div class="result-name">${name}</div>
         <div class="result-mark">Mark: ${mark}/100</div>
@@ -104,7 +103,7 @@ function updateStudentsList() {
             <div class="student-item ${statusClass}">
                 <div class="student-name">${student.name}</div>
                 <div class="student-mark">Mark: ${student.mark}/100</div>
-                <div class="student-status ${statusClass}">${student.emoji} ${student.status}</div>
+                <div class="student-status ${statusClass}">${student.status}</div>
             </div>
         `;
 
